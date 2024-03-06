@@ -1,0 +1,61 @@
+/////Lembre-se de que para executar este código, você precisará ter o PyQt5 instalado:
+pip install PyQt5 torch transformers
+
+
+
+
+aplicativo usando Python, e existem várias bibliotecas e frameworks que facilitam essa tarefa. Um framework popular para o desenvolvimento de aplicativos de desktop em Python é o PyQt, que fornece ferramentas para criar interfaces gráficas de usuário (GUIs).
+
+Aqui está um exemplo básico de como você poderia usar PyQt para criar um aplicativo simples com o código do tradutor:
+
+# Importações necessárias
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+
+class TradutorApp(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        # Inicializar modelo e tokenizador
+        self.modelo = T5ForConditionalGeneration.from_pretrained("t5-small")
+        self.tokenizador = T5Tokenizer.from_pretrained("t5-small")
+
+        # Configurar a interface do usuário
+        self.setWindowTitle('Tradutor Python')
+        self.layout = QVBoxLayout()
+
+        self.label_entrada = QLabel('Digite o texto em inglês:')
+        self.input_texto = QLineEdit()
+
+        self.label_saida = QLabel('Tradução:')
+        self.output_texto = QLabel('')
+
+        self.botao_traduzir = QPushButton('Traduzir')
+        self.botao_traduzir.clicked.connect(self.traduzir_texto)
+
+        self.layout.addWidget(self.label_entrada)
+        self.layout.addWidget(self.input_texto)
+        self.layout.addWidget(self.label_saida)
+        self.layout.addWidget(self.output_texto)
+        self.layout.addWidget(self.botao_traduzir)
+
+        self.setLayout(self.layout)
+
+    def traduzir_texto(self):
+        texto_ingles = self.input_texto.text()
+        traducao = self.traduzir_texto_modelo(texto_ingles)
+        self.output_texto.setText(traducao)
+
+    def traduzir_texto_modelo(self, texto):
+        entrada = self.tokenizador("traduza: " + texto, return_tensors="pt")
+        saida = self.modelo.generate(**entrada)
+        traducao = self.tokenizador.batch_decode(saida, skip_special_tokens=True)[0]
+        return traducao
+
+if __name__ == '__main__':
+    app = QApplication([])
+    tradutor_app = TradutorApp()
+    tradutor_app.show()
+    app.exec_()
+
+Este é um exemplo simples usando PyQt. Os usuários podem digitar o texto em inglês na caixa de entrada, clicar no botão "Traduzir", e a tradução será exibida.
