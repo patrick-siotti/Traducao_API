@@ -1,0 +1,15 @@
+meu_pacote/
+├── meu_pacote/
+│   ├── __init__.py
+│   ├── traducao/
+│   │   ├── __init__.py
+│   │   └── tradutor.py
+│   └── interface_usuario/
+│       ├── __init__.py
+│       └── main.py
+├── tests/
+│   ├── __init__.py
+│   └── test_tradutor.py
+├── README.md
+├── requirements.txt
+└── setup.py
