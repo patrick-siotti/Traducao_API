@@ -1,0 +1,20 @@
+meu_pacote/
+├── src/
+│   ├── meu_pacote/
+│   │   ├── __init__.py
+│   │   ├── traducao/
+│   │   │   ├── __init__.py
+│   │   │   ├── tradutor.py
+│   │   │   └── provedores/
+│   │   │       ├── __init__.py
+│   │   │       ├── provedor_google.py
+│   │   │       └── provedor_amazon.py
+│   │   └── interface_usuario/
+│   │       ├── __init__.py
+│   │       └── main.py
+├── tests/
+│   ├── __init__.py
+│   └── test_tradutor.py
+├── README.md
+├── requirements.txt
+└── setup.py
