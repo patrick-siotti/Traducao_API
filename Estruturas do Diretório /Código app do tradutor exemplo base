@@ -1,14 +1,4 @@
-Aplicativo de Tradução Python com PyQt
-Este é um aplicativo Python que utiliza o framework PyQt para criar uma interface gráfica de usuário para tradução de texto.
-
-Requisitos de Instalação:
-Antes de executar o código, você precisará ter o PyQt5, torch e transformers instalados. Você pode instalá-los usando o seguinte comando:
-
-pip install PyQt5 torch transformers
-
-Código do Aplicativo:
-Aqui está o código do aplicativo:
-
+```python
 # Importações necessárias
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from transformers import T5ForConditionalGeneration, T5Tokenizer
@@ -59,10 +49,6 @@ if __name__ == '__main__':
     tradutor_app.show()
     app.exec_()
 
-Como Usar:
-Execute o aplicativo Python.
-Digite o texto em inglês na caixa de entrada.
-Clique no botão "Traduzir".
-A tradução será exibida na caixa de saída.
-Nota:
-Certifique-se de ter o PyQt5, torch e transformers instalados antes de executar o aplicativo.
+
+
+Isso garantirá que o código Python seja exibido corretamente no preview do GitHub com destaque de sintaxe e formatação adequada. Basta copiar este bloco de código e colá-lo no seu arquivo README.md do repositório do GitHub.
