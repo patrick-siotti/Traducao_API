@@ -1,14 +1,17 @@
-Incorporar um script interativo diretamente em uma aplicação ou website 
-exemplo de como você poderia incorporar
-a lógica do tradutor em uma aplicação web usando Flash.
+# Incorporando um script interativo em uma aplicação web com Flask
 
+Neste exemplo, mostraremos como incorporar a lógica do tradutor em uma aplicação web usando Flask.
+
+## Requisitos de Instalação:
+
+Antes de executar o código, você precisará ter o Flask instalado. Você pode instalá-lo usando o seguinte comando:
+
+```bash
 pip install flask
 
-Crie o Arquivo da Aplicação:
-
+Código da Aplicação:
 Crie um arquivo chamado app.py e adicione o seguinte código:
 
-# app.py
 from flask import Flask, render_template, request
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 
@@ -32,8 +35,6 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
 
 Crie um Template HTML:
 Crie um diretório chamado templates e dentro dele crie um arquivo index.html:
@@ -60,7 +61,6 @@ Crie um diretório chamado templates e dentro dele crie um arquivo index.html:
 </body>
 </html>
 
-
 Execute a Aplicação:
 Execute a aplicação com o seguinte comando:
 
@@ -68,4 +68,4 @@ python app.py
 
 Acesse http://127.0.0.1:5000/ em seu navegador para ver a aplicação em ação.
 
-Este é apenas um exemplo simples para ilustrar como você pode incorporar a funcionalidade do tradutor em uma aplicação web usando Flask. 
+Este é apenas um exemplo simples para ilustrar como você pode incorporar a funcionalidade do tradutor em uma aplicação web usando Flask.
