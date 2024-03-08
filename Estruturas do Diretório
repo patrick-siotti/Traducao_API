@@ -1,15 +1,15 @@
 meu_pacote/
-├── meu_pacote/
-│   ├── __init__.py
-│   ├── traducao/
-│   │   ├── __init__.py
-│   │   └── tradutor.py
-│   └── interface_usuario/
-│       ├── __init__.py
-│       └── main.py
-├── tests/
-│   ├── __init__.py
-│   └── test_tradutor.py
-├── README.md
-├── requirements.txt
-└── setup.py
+├── meu_pacote/              # Pasta raiz do pacote
+│   ├── __init__.py          # Arquivo de inicialização do pacote
+│   ├── traducao/            # Subpasta para módulos de tradução
+│   │   ├── __init__.py      # Arquivo de inicialização do subpacote traducao
+│   │   └── tradutor.py      # Módulo para funcionalidade de tradução
+│   └── interface_usuario/   # Subpasta para módulos de interface do usuário
+│       ├── __init__.py      # Arquivo de inicialização do subpacote interface_usuario
+│       └── main.py          # Módulo principal da interface do usuário
+├── tests/                    # Pasta para arquivos de teste
+│   ├── __init__.py           # Arquivo de inicialização dos testes
+│   └── test_tradutor.py      # Arquivo de teste para o módulo tradutor
+├── README.md                 # Arquivo de README com informações sobre o pacote
+├── requirements.txt          # Arquivo com as dependências do pacote
+└── setup.py                  # Arquivo de configuração para instalação do pacote
