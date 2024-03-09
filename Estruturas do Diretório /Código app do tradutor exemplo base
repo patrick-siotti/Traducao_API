@@ -1,13 +1,4 @@
-/////Lembre-se de que para executar este código, você precisará ter o PyQt5 instalado:
-pip install PyQt5 torch transformers
-
-
-
-
-aplicativo usando Python, e existem várias bibliotecas e frameworks que facilitam essa tarefa. Um framework popular para o desenvolvimento de aplicativos de desktop em Python é o PyQt, que fornece ferramentas para criar interfaces gráficas de usuário (GUIs).
-
-Aqui está um exemplo básico de como você poderia usar PyQt para criar um aplicativo simples com o código do tradutor:
-
+```python
 # Importações necessárias
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from transformers import T5ForConditionalGeneration, T5Tokenizer
@@ -58,4 +49,6 @@ if __name__ == '__main__':
     tradutor_app.show()
     app.exec_()
 
-Este é um exemplo simples usando PyQt. Os usuários podem digitar o texto em inglês na caixa de entrada, clicar no botão "Traduzir", e a tradução será exibida.
+
+
+Isso garantirá que o código Python seja exibido corretamente no preview do GitHub com destaque de sintaxe e formatação adequada. Basta copiar este bloco de código e colá-lo no seu arquivo README.md do repositório do GitHub.

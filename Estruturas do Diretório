@@ -1,15 +1,61 @@
+meu_pacote
+Bem-vindo ao meu_pacote! Este é um pacote Python que oferece funcionalidades relacionadas à tradução e interface do usuário.
+
+Estrutura do Projeto:
 meu_pacote/
-├── meu_pacote/
-│   ├── __init__.py
-│   ├── traducao/
-│   │   ├── __init__.py
-│   │   └── tradutor.py
-│   └── interface_usuario/
-│       ├── __init__.py
-│       └── main.py
-├── tests/
-│   ├── __init__.py
-│   └── test_tradutor.py
-├── README.md
-├── requirements.txt
-└── setup.py
+├── meu_pacote/                   # Pasta raiz do pacote
+│   ├── __init__.py               # Arquivo de inicialização do pacote
+│   ├── traducao/                 # Subpasta para módulos de tradução
+│   │   ├── __init__.py           # Arquivo de inicialização do subpacote traducao
+│   │   └── tradutor.py           # Módulo para funcionalidade de tradução
+│   └── interface_usuario/        # Subpasta para módulos de interface do usuário
+│       ├── __init__.py           # Arquivo de inicialização do subpacote interface_usuario
+│       └── main.py               # Módulo principal da interface do usuário
+│
+├── tests/                        # Pasta para arquivos de teste
+│   ├── __init__.py               # Arquivo de inicialização dos testes
+│   └── test_tradutor.py          # Arquivo de teste para o módulo tradutor
+│
+├── README.md                     # Arquivo de README com informações sobre o pacote
+│
+├── requirements.txt              # Arquivo com as dependências do pacote
+│
+└── setup.py                      # Arquivo de configuração para instalação do pacote
+
+Descrição:
+Este pacote Python foi desenvolvido para fornecer funcionalidades de tradução e uma interface de usuário simplificada. Ele contém dois subpacotes principais: traducao para tradução de texto e interface_usuario para interações com o usuário.
+
+Recursos:
+Tradução de Texto: O módulo tradutor.py fornece funções para traduzir texto para diferentes idiomas.
+Interface de Usuário: O módulo main.py oferece uma interface de linha de comando simples para interação com o usuário.
+Como Usar:
+Instalação:
+
+Instale as dependências listadas no arquivo requirements.txt.
+
+pip install -r requirements.txt
+
+Importação:
+
+Importe os módulos necessários do pacote meu_pacote no seu código Python.
+
+from meu_pacote.traducao import tradutor
+from meu_pacote.interface_usuario import main
+
+Utilização:
+
+Use as funções fornecidas para realizar traduções ou interagir com o usuário.
+
+tradutor.traduzir_texto("Olá", "en")  # Traduz "Olá" para inglês
+main.exibir_menu()  # Exibe o menu principal da interface do usuário
+
+Para mais detalhes, consulte o arquivo README.md.
+
+Testes:
+A pasta tests/ contém testes automatizados para garantir a qualidade do código. Execute os testes antes de contribuir com alterações no projeto.
+
+Contribuições:
+Este projeto é aberto a contribuições da comunidade. Se você encontrar bugs, tiver sugestões de melhorias ou desejar adicionar novos recursos, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+Licença:
+Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para usar, modificar e distribuir o código conforme necessário.
