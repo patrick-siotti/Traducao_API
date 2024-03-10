@@ -2,19 +2,19 @@
 
 nota de 0 a 10
 
-como funciona?
-tempo: <quão rapido ele traduz>: quanto maior, melhor
-tradução: <qualidade da tradução>: quanto maior, melhor
-complexidade: <dificuldade de leitura e escrita do codigo>: quanto maior, melhor
+como funciona? <br>
+tempo: <quão rapido ele traduz>: quanto maior, melhor <br>
+tradução: <qualidade da tradução>: quanto maior, melhor <br>
+complexidade: <dificuldade de leitura e escrita do codigo>: quanto maior, melhor <br>
 
-tempo: 8.5:
-tradução: 7:
-complexidade main: 9.5:
-complexidade modelo: 7.5:
+tempo: 8.5: <br>
+tradução: 7: <br>
+complexidade main: 9.5: <br>
+complexidade modelo: 7.5: <br>
 
-Este modelo é realmente bem bom, se caso for bem refinado ou caso consiga encontrar um modelo melhor, pode acabar sendo de bom uso.
-Ele pode ser usado mesmo offline, só tem que ser usado uma vez online para o download do modelo
-Conseguiria traduzir um jogo grande rapidamente
+Este modelo é realmente bem bom, se caso for bem refinado ou caso consiga encontrar um modelo melhor, pode acabar sendo de bom uso. <br>
+Ele pode ser usado mesmo offline, só tem que ser usado uma vez online para o download do modelo <br>
+Conseguiria traduzir um jogo grande rapidamente <br>
 
 # como usar o pacote?
 
