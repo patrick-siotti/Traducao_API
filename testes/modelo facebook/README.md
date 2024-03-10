@@ -47,14 +47,25 @@ if __name__ == '__main__': # codigo em si
 o modelo tem algumas configurações que podem ser interessantes usar:
 
 `substituir` - é usado para substituir as variaveis nos textos por um texto secundario, para que o modelo não acabe traduzindo as variaveis. Isso é importante pois se caso a variavel não existir, pode acarrentar em bugs no jogo. Recebe uma `str`
+
 `modelo_translate` - o modelo padrão é facebook/m2m100_418M, mas você pode mudar usando esta configuração. Caso mude o modelo, teste bem, a qualidade da tradução pode mudar dependendo do modelo. Recebe uma `str`
+
 `de` - em qual linguagem vai estar o texto, padrão `en` (inglês). Recebe uma `str`
+
 `para` - em qual lingua é pra traduzir. padrão `pt` (português). Recebe uma `str`
+
 `retira` - um lista de listas com strings que contem textos com caracteres que representam o inicio e o final de uma variavel. Recebe uma `list[list[str, str], ]`
+
 `ignorar` - uma lista com palavras que devem ser ignoradas pelo tradutor. recebe uma `list[str]`
+
 `ignorar_sensivel` - se as letras maiusculas e minusculas devem ser ignoradas. Padrão `True`. Recebe um `bool`
+
 `caminho` - caminho onde se encontra o arquivo para tradução. Padrão `None`. Recebe um `bool`
+
 `reescrever` - se deve criar um arquivo igual para reescrever o texto original com a tradução. Padrão `True`. Recebe um `bool`
+
 `regex` - se caso quiser aplicar um regex para traduzir apenas uma parte do texto. Padrão `''`. Recebe um `str`
+
 `encoding` - codificação do arquivo, caso a codificação seja diferente. Padrão `utf-8`. Recebe um `str`
+
 `max_thread` - quantidade maxima de traduções simultaneas. Padrão `1`, Recebe um `int`
