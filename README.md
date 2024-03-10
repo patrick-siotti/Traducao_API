@@ -2,11 +2,23 @@
 
 API python para tradução automatica de jogos
 
-0% concluido
+10% concluido
 
 * etapa 1
 
   escolhendo modo de tradução
+
+  * modelos já testados:
+  |
+  * modelo facebook
+  | |
+  | | resultados:
+  | | | tempo: 8.5:
+  | | | tradução: 7:
+  | | | complexidade main: 9.5:
+  | | | complexidade modelo: 7.5:
+  | |
+  | | para mais informações entrar em `testes/modelo facebook`
 
 # DESENVOLVEDORES
 
