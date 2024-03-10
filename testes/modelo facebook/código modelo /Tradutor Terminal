@@ -37,3 +37,15 @@ tradutor_terminal.retira_texto_de_arquivo()
 
 # Tradução das linhas salvas
 tradutor_terminal.traduzir_linhas_salvas()
+
+- Mantenha o ambiente virtualizado e as dependências atualizadas para garantir a compatibilidade com as bibliotecas e ferramentas utilizadas.
+- Faça testes abrangentes para verificar a robustez e eficácia do código em diferentes cenários e condições.
+- Ajuste as configurações conforme necessário para atender às especificações e requisitos do projeto.
+- Esteja ciente das limitações e restrições impostas pelas APIs e modelos de tradução utilizados.
+- Considere implementar mecanismos adicionais de segurança e validação para proteger contra possíveis vulnerabilidades e erros de segurança.
+- Documente adequadamente o código e forneça instruções claras para facilitar o uso e a manutenção futura.
+- Mantenha-se atualizado sobre as melhores práticas de desenvolvimento e as últimas atualizações nas bibliotecas e ferramentas utilizadas.
+
+Com estas observações em mente, o `TradutorTerminal` pode ser uma ferramenta poderosa para automatizar e simplificar o processo de tradução de texto em seus projetos. Certifique-se de adaptar o código conforme necessário e aproveitar ao máximo suas funcionalidades.
+
+Se você tiver alguma dúvida ou precisar de mais assistência, não hesite em perguntar!
