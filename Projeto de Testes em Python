@@ -1,0 +1,76 @@
+//  Criado por Anderson Martins e Purple em 9 de março de 2024.
+//  Todos os direitos reservados.
+# Projeto de Testes em Python
+
+Este é um projeto de testes em Python que visa garantir a qualidade e a confiabilidade do código. Aqui estão algumas informações importantes sobre o projeto.
+
+## Contribuindo
+
+Nós adoramos contribuições! Se você quiser ajudar a melhorar este projeto, siga estas etapas:
+
+1. Fork este repositório.
+2. Crie um branch com uma descrição clara da sua alteração (`git checkout -b minha-alteracao`).
+3. Faça as alterações desejadas e adicione testes, se aplicável.
+4. Faça o commit de suas alterações (`git commit -am 'Adicionando minha alteração'`).
+5. Envie suas alterações para o seu fork do repositório (`git push origin minha-alteracao`).
+6. Crie uma nova solicitação pull e descreva suas alterações detalhadamente.
+
+## Testes em Python
+
+Este projeto inclui uma variedade de testes em Python para garantir a funcionalidade e a estabilidade do código. Aqui estão alguns tipos de testes que implementamos:
+
+1. **Testes de unidade**: testam unidades individuais de código para garantir que funcionem corretamente isoladamente.
+2. **Testes de integração**: testam a integração entre diferentes partes do sistema para garantir que se comuniquem corretamente.
+3. **Testes de aceitação**: testam o comportamento geral do sistema para garantir que atendam aos requisitos do usuário.
+4. **Testes de regressão**: testam se as alterações recentes no código introduziram regressões ou bugs em funcionalidades existentes.
+5. **Testes de desempenho**: testam o desempenho do código para garantir que atenda aos requisitos de desempenho.
+
+## Licença
+
+Este projeto é licenciado sob a [Licença MIT](LICENSE). Você é livre para usar, modificar e distribuir este software conforme desejar, desde que inclua o aviso de direitos autorais e a licença.
+
+# Testes em Python
+
+Este repositório contém um conjunto de testes em Python para verificar a funcionalidade de determinado código ou biblioteca.
+
+## Estrutura do Projeto
+
+O projeto está estruturado da seguinte forma:
+
+project/
+│
+├── src/
+│ └── # Pasta contendo o código a ser testado
+│
+└── tests/
+└── # Pasta contendo os testes em Python
+
+
+## Executando os Testes
+
+Para executar os testes, siga as etapas abaixo:
+
+1. **Clone o Repositório**: Clone este repositório para o seu ambiente local.
+
+2. **Instale as Dependências**: Certifique-se de ter todas as dependências instaladas. Você pode instalar as dependências usando o `pip`:
+
+pip install -r requirements.txt
+
+
+3. **Execute os Testes**: Navegue até o diretório de testes e execute o comando para executar todos os testes:
+
+cd tests/
+python -m unittest discover
+
+
+Isso executará todos os testes presentes na pasta de testes e exibirá os resultados no console.
+
+## Contribuindo
+
+Contribuições são bem-vindas! Se você tiver sugestões de melhorias nos testes existentes ou quiser adicionar novos testes, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+Por favor, siga as diretrizes de contribuição e o código de conduta ao contribuir para este projeto.
+
+## Licença
+
+Este projeto é licenciado sob a [MIT License](LICENSE).
