@@ -1,0 +1,39 @@
+# Tradutor Terminal
+
+O `TradutorTerminal` é uma classe Python projetada para traduzir texto de um idioma para outro usando diferentes modelos de tradução, como o modelo da biblioteca `transformers` ou o serviço de tradução do Facebook.
+
+## Funcionalidades
+
+- **Escolha do Tradutor:** A classe permite escolher entre o tradutor do modelo `transformers` ou o tradutor do Facebook para realizar as traduções.
+- **Verificação da Qualidade:** Antes de escrever a tradução no arquivo, o código verifica se a qualidade da tradução atende aos critérios mínimos especificados.
+- **Concorrência:** Utiliza concorrência para aumentar o desempenho durante o processo de tradução.
+- **Tratamento de Exceções:** Trata exceções de forma abrangente para lidar com possíveis erros que possam ocorrer durante a tradução.
+- **Ignorar Palavras-Chave:** Permite ignorar determinadas palavras-chave durante o processo de tradução, se necessário.
+
+## Uso
+
+```python
+tradutor_terminal = TradutorTerminal()
+
+# Configurações
+tradutor_terminal.substituir = 'variavel'
+tradutor_terminal.modelo_translate = 'facebook/m2m100_418M'
+tradutor_terminal.de = 'en'
+tradutor_terminal.para = 'pt'
+tradutor_terminal.retira = []
+tradutor_terminal.ignorar = []
+tradutor_terminal.ignorar_sensivel = True
+tradutor_terminal.caminho = None
+tradutor_terminal.reescrever = True
+tradutor_terminal.sep_pasta = '/'
+tradutor_terminal.regex = ''
+tradutor_terminal.encoding = 'utf-8'
+tradutor_terminal.max_thread = 1
+tradutor_terminal.qualidade_minima = 0.9
+tradutor_terminal.tradutor_atual = 'modelo'  # ou 'facebook'
+
+# Extração de texto do arquivo
+tradutor_terminal.retira_texto_de_arquivo()
+
+# Tradução das linhas salvas
+tradutor_terminal.traduzir_linhas_salvas()
