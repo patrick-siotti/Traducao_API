@@ -1,0 +1,88 @@
+Este código é um exemplo de um aplicativo web escrito em Python usando o framework Bottle. Ele implementa um serviço que se comunica com o serviço Account Kit do Facebook para autenticação de usuários.
+
+Aqui está uma breve descrição do que cada parte do código faz:
+
+As importações: O código importa os módulos necessários, incluindo locale, hashlib, hmac, random, string e o módulo Bottle.
+
+A configuração inicial: O código configura algumas variáveis de ambiente, como o ID do aplicativo, o segredo do aplicativo, o token do cliente e a versão do Account Kit a ser usada. Ele também define um segredo de cookie, que é usado para assinar cookies para proteger contra ataques de falsificação de solicitação entre sites (CSRF).
+
+A rota '/' : Define uma rota para a página inicial do aplicativo. Neste caso, ele gera um token CSRF aleatório e o define como um cookie. Em seguida, ele renderiza um modelo chamado 'index', passando algumas variáveis como o ID do aplicativo, o token CSRF e a versão do Account Kit.
+
+A rota '/success' : Define uma rota para lidar com solicitações POST na rota '/success'. Esta rota é usada para processar as respostas do Account Kit após uma autenticação bem-sucedida. Ele extrai o código de autorização e o token CSRF da solicitação e verifica se o token CSRF no cookie corresponde ao token CSRF na solicitação. Se não corresponderem, uma resposta de erro 401 é retornada. Caso contrário, ele continua a fazer uma solicitação para obter o token de acesso do Account Kit, usando o código de autorização recebido.
+
+Este código mostra como usar o Bottle para criar um serviço web simples que se integra com o Account Kit do Facebook para autenticação de usuários.
+
+aqui estão as instruções para configurar as variáveis de ambiente corretamente:
+
+ACCOUNTKIT_APP_ID: Esta variável deve conter o ID do aplicativo do Account Kit. Você pode obtê-lo ao registrar seu aplicativo no Facebook for Developers.
+
+ACCOUNTKIT_APP_SECRET: Esta variável deve conter o segredo do aplicativo do Account Kit. Também é obtido durante o registro do aplicativo no Facebook for Developers.
+
+ACCOUNTKIT_CLIENT_TOKEN: Esta variável deve conter o token do cliente do Account Kit. Ele também é obtido durante o registro do aplicativo no Facebook for Developers.
+
+COOKIE_SECRET: Esta variável é opcional e contém o segredo usado para assinar cookies para proteção CSRF. Se não for definido, será usado um valor padrão ('secret_password').
+
+Você pode configurar essas variáveis de ambiente no seu sistema operacional ou em seu ambiente de execução preferido. Por exemplo, se estiver usando Linux ou macOS, você pode defini-las no arquivo ~/.bashrc ou ~/.bash_profile. Se estiver usando Windows, você pode defini-las nas variáveis de ambiente do sistema.
+
+Aqui está um exemplo de como configurar essas variáveis de ambiente no Linux ou macOS usando o terminal:
+
+export ACCOUNTKIT_APP_ID=sua_chave_aqui
+export ACCOUNTKIT_APP_SECRET=seu_segredo_aqui
+export ACCOUNTKIT_CLIENT_TOKEN=seu_token_aqui
+export COOKIE_SECRET=sua_senha_aqui
+
+Lembre-se de substituir 'sua_chave_aqui', 'seu_segredo_aqui', 'seu_token_aqui' e 'sua_senha_aqui' pelos valores reais fornecidos pelo Facebook for Developers ao registrar seu aplicativo. Depois de configurar as variáveis de ambiente, você pode executar o código Python fornecido anteriormente.
+
+aqui está o código com as variáveis de ambiente configuradas corretamente:
+
+import os
+import bottle
+import random
+import string
+
+# Configuração das variáveis de ambiente para as chaves do Account Kit
+app_id = os.getenv('ACCOUNTKIT_APP_ID')
+app_secret = os.getenv('ACCOUNTKIT_APP_SECRET')
+client_token = os.getenv('ACCOUNTKIT_CLIENT_TOKEN')
+
+# Definição da versão do Account Kit
+accountkit_version = 'v1.1'
+
+# Configuração do segredo do cookie para CSRF
+cookie_secret = os.getenv('COOKIE_SECRET', 'secret_password')
+
+# Inicialização do aplicativo Bottle
+app = bottle.default_app()
+
+# Rota para a página inicial
+@app.route('/')
+def index():
+    # Geração do token CSRF aleatório
+    csrf_token = ''.join(random.choices(string.ascii_uppercase + string.digits, k=32))
+    
+    # Configuração do cookie com o token CSRF
+    bottle.response.set_cookie('csrf', csrf_token, secret=cookie_secret)
+    
+    # Renderização do template HTML com as variáveis necessárias
+    return bottle.template('index',
+                           app_id=app_id,
+                           csrf=csrf_token,
+                           accountkit_version=accountkit_version)
+
+# Rota para lidar com as respostas do Account Kit após a autenticação
+@app.route('/success', method='POST')
+def success():
+    # Obtenção dos dados enviados pelo formulário POST
+    code = bottle.request.forms.get('code')
+    csrf = bottle.request.forms.get('csrf')
+
+    # Verificação se o token CSRF no cookie corresponde ao token CSRF na solicitação
+    if csrf != bottle.request.get_cookie('csrf', secret=cookie_secret):
+        # Se não corresponder, aborta a requisição com erro 401 (Não autorizado)
+        bottle.abort(401, 'CSRF Token Mismatch')
+
+    # Aqui você deve implementar a lógica para fazer a solicitação HTTP para obter o token de acesso e continuar o fluxo de autenticação
+
+# Execução do aplicativo na porta 8080
+if __name__ == '__main__':
+    bottle.run(host='localhost', port=8080)
