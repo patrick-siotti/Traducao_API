@@ -157,3 +157,65 @@ platformio.ini: Este é o arquivo de configuração do PlatformIO, que especific
 LICENSE: Este arquivo contém a licença do projeto, especificando os termos de uso e distribuição.
 
 .gitignore: Este arquivo contém as configurações do Git para ignorar arquivos e diretórios desnecessários durante o controle de versão.
+
+
+
+Como exemplo: nesta estrutura, foram adicionados subgrupos para as classes de tradução e utilitários, bem como classes específicas para cada tipo de tradutor (Facebook e T5). 
+Além disso, foram incluídas classes adicionais de utilitários, como validadores, formatters e helpers, para melhor organização e reutilização de código.
+Os testes também foram organizados de acordo com os grupos de funcionalidades que testam.Nesta estrutura, foram adicionados subgrupos para as classes de tradução e utilitários, bem como classes específicas para cada tipo de tradutor (Facebook e T5).
+Além disso, foram incluídas classes adicionais de utilitários, como validadores, formatters e helpers, para melhor organização e reutilização de código. Os testes também foram organizados de acordo com os grupos de funcionalidades que testam.
+
+
+game_translation_project/
+│
+├── src/
+│   ├── main.py                                     # Arquivo principal do programa.
+│   ├── translations/                               # Subdiretório para as implementações de tradução.
+│   │   ├── __init__.py
+│   │   ├── facebook_translation.py                 # Implementação das funções de tradução utilizando a API do Facebook.
+│   │   ├── t5_translation.py                       # Implementação das funções de tradução utilizando o modelo T5.
+│   │   ├── translators/                            # Subdiretório para classes específicas de tradução.
+│   │   │   ├── __init__.py
+│   │   │   ├── base_translator.py                  # Classe base para todos os tradutores.
+│   │   │   ├── facebook_translator.py              # Classe para tradução utilizando a API do Facebook.
+│   │   │   ├── t5_translator.py                    # Classe para tradução utilizando o modelo T5.
+│   ├── utils/                                      # Subdiretório para funções utilitárias.
+│   │   ├── __init__.py
+│   │   ├── game_translation_util.py                # Funções utilitárias relacionadas à tradução de jogos.
+│   │   ├── validators.py                           # Funções de validação de entrada.
+│   │   ├── formatters.py                           # Funções de formatação de texto.
+│   │   ├── helpers.py                              # Funções auxiliares.
+│
+├── tests/
+│   ├── test_translations/                          # Subdiretório para os testes das implementações de tradução.
+│   │   ├── __init__.py
+│   │   ├── test_facebook_translation.py            # Testes para as funções de tradução utilizando a API do Facebook.
+│   │   ├── test_t5_translation.py                  # Testes para as funções de tradução utilizando o modelo T5.
+│   ├── test_utils/                                 # Subdiretório para os testes das funções utilitárias.
+│   │   ├── __init__.py
+│   │   ├── test_game_translation_util.py           # Testes para as funções utilitárias relacionadas à tradução de jogos.
+│   │   ├── test_validators.py                      # Testes para as funções de validação.
+│   │   ├── test_formatters.py                      # Testes para as funções de formatação.
+│   │   ├── test_helpers.py                         # Testes para as funções auxiliares.
+│
+├── libraries/
+│   ├── facebook_api_library/                       # Biblioteca externa para interagir com a API do Facebook.
+│   │   ├── __init__.py
+│   │   ├── facebook_api.py                         # Implementação das funções de interação com a API do Facebook.
+│   ├── t5_library/                                 # Biblioteca externa para implementar o modelo T5.
+│   │   ├── __init__.py
+│   │   ├── t5.py                                   # Implementação das funções relacionadas ao modelo T5.
+│
+├── examples/
+│   ├── basic_usage.py                              # Exemplo de uso básico do projeto.
+│   ├── advanced_usage.py                           # Exemplo de uso avançado do projeto.
+│
+├── docs/
+│   ├── README.md                                   # Descrição do projeto e instruções de uso.
+│   ├── user_manual.md                              # Manual do usuário com informações sobre como usar a tradução de jogos.
+│   ├── troubleshooting.md                          # Guia de solução de problemas comuns.
+│   ├── images/                                     # Pasta com imagens utilizadas na documentação.
+│   │   ├── diagram1.png                            # Diagrama 1.
+│   │   ├── diagram2.png                            # Diagrama 2.
+
+
