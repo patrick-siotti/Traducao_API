@@ -1,0 +1,100 @@
+Este código é um script em Python que cria um serviço web utilizando o framework Bottle. Ele se destina a lidar com solicitações de autenticação de usuários usando o serviço Account Kit do Facebook.
+
+Aqui está uma explicação de suas principais partes:
+
+Configuração das Variáveis de Ambiente: O código define variáveis ​​de ambiente para as chaves necessárias do Account Kit, como ID do aplicativo, segredo do aplicativo e token do cliente. Essas variáveis são recuperadas do ambiente em que o script é executado.
+
+Inicialização do Aplicativo Bottle: O aplicativo Bottle é inicializado usando bottle.default_app(), preparando-o para lidar com rotas e solicitações HTTP.
+
+Rota para a Página Inicial ("/"): Esta rota gera um token CSRF aleatório, o configura como um cookie e renderiza um template HTML com algumas variáveis, incluindo o ID do aplicativo e a versão do Account Kit.
+
+Rota para Lidar com Respostas do Account Kit ("/success"): Esta rota é acessada após o usuário realizar a autenticação com sucesso no Account Kit. Ela recebe os parâmetros enviados pelo formulário POST, verifica se o token CSRF no cookie corresponde ao token CSRF na solicitação (para evitar ataques CSRF) e autentica o usuário usando as informações recebidas do Account Kit. Em seguida, ele renderiza um template HTML com as informações de autenticação do usuário.
+
+Autenticação com o Account Kit: A função authenticate_with_account_kit() é responsável por fazer a solicitação HTTP para obter o token de acesso do Account Kit e processar as informações de autenticação retornadas. Ele usa as chaves do Account Kit configuradas nas variáveis de ambiente.
+
+Execução do Serviço Web: O código executa o aplicativo na porta 8080, tornando-o disponível para receber e responder a solicitações HTTP.
+
+Em resumo, este script configura um serviço web para lidar com a autenticação de usuários usando o Account Kit do Facebook, garantindo a segurança por meio de tokens CSRF e integrando-se às APIs do Account Kit para autenticação de usuário.
+import os
+import bottle
+import random
+import string
+import requests
+import hashlib
+import hmac
+import json
+
+# Configuração das variáveis de ambiente para as chaves do Account Kit
+app_id = os.getenv('ACCOUNTKIT_APP_ID')
+app_secret = os.getenv('ACCOUNTKIT_APP_SECRET')
+client_token = os.getenv('ACCOUNTKIT_CLIENT_TOKEN')
+
+# Definição da versão do Account Kit
+accountkit_version = 'v1.1'
+
+# Configuração do segredo do cookie para CSRF
+cookie_secret = os.getenv('COOKIE_SECRET', 'secret_password')
+
+# Inicialização do aplicativo Bottle
+app = bottle.default_app()
+
+# Função para autenticar usando Account Kit
+def authenticate_with_account_kit(code, csrf):
+    token_url = f'https://graph.accountkit.com/{accountkit_version}/access_token'
+    token_params = {
+        'grant_type': 'authorization_code',
+        'code': code,
+        'access_token': f'{app_id}|{app_secret}'
+    }
+
+    # Fazendo a solicitação HTTP para obter o token de acesso
+    response = requests.get(token_url, params=token_params)
+    token_response = response.json()
+
+    # Obtendo o ID do usuário e o token de acesso
+    user_id = token_response.get('id')
+    user_access_token = token_response.get('access_token')
+
+    # Fazendo uma segunda solicitação para obter as informações de identidade do usuário
+    identity_url = f'https://graph.accountkit.com/{accountkit_version}/me'
+    appsecret_proof = hmac.new(app_secret.encode(), user_access_token.encode(), hashlib.sha256).hexdigest()
+    identity_params = {
+        'access_token': user_access_token,
+        'appsecret_proof': appsecret_proof
+    }
+    response = requests.get(identity_url, params=identity_params)
+    identity_response = response.json()
+
+    # Obtendo o número de telefone e o endereço de e-mail do usuário, se disponíveis
+    phone_number = identity_response.get('phone', {}).get('number', 'N/A')
+    email_address = identity_response.get('email', {}).get('address', 'N/A')
+
+    return user_id, phone_number, email_address, user_access_token
+
+# Rota para lidar com as respostas do Account Kit após a autenticação
+@app.route('/success', method='POST')
+def success():
+    # Obtenção dos dados enviados pelo formulário POST
+    code = bottle.request.forms.get('code')
+    csrf = bottle.request.forms.get('csrf')
+
+    # Verificação se o token CSRF no cookie corresponde ao token CSRF na solicitação
+    if csrf != bottle.request.get_cookie('csrf', secret=cookie_secret):
+        # Se não corresponder, aborta a requisição com erro 401 (Não autorizado)
+        bottle.abort(401, 'CSRF Token Mismatch')
+
+    # Autenticando usando Account Kit
+    user_id, phone_number, email_address, user_access_token = authenticate_with_account_kit(code, csrf)
+
+    # Renderizando um template HTML com as informações do usuário
+    return bottle.template('response',
+                           user_id=user_id,
+                           phone_number=phone_number,
+                           email_address=email_address,
+                           user_access_token=user_access_token)
+
+# Execução do aplicativo na porta 8080
+if __name__ == '__main__':
+    bottle.run(host='localhost', port=8080)
+
+

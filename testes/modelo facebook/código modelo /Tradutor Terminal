@@ -1,0 +1,51 @@
+# Tradutor Terminal
+
+O `TradutorTerminal` é uma classe Python projetada para traduzir texto de um idioma para outro usando diferentes modelos de tradução, como o modelo da biblioteca `transformers` ou o serviço de tradução do Facebook.
+
+## Funcionalidades
+
+- **Escolha do Tradutor:** A classe permite escolher entre o tradutor do modelo `transformers` ou o tradutor do Facebook para realizar as traduções.
+- **Verificação da Qualidade:** Antes de escrever a tradução no arquivo, o código verifica se a qualidade da tradução atende aos critérios mínimos especificados.
+- **Concorrência:** Utiliza concorrência para aumentar o desempenho durante o processo de tradução.
+- **Tratamento de Exceções:** Trata exceções de forma abrangente para lidar com possíveis erros que possam ocorrer durante a tradução.
+- **Ignorar Palavras-Chave:** Permite ignorar determinadas palavras-chave durante o processo de tradução, se necessário.
+
+## Uso
+
+```python
+tradutor_terminal = TradutorTerminal()
+
+# Configurações
+tradutor_terminal.substituir = 'variavel'
+tradutor_terminal.modelo_translate = 'facebook/m2m100_418M'
+tradutor_terminal.de = 'en'
+tradutor_terminal.para = 'pt'
+tradutor_terminal.retira = []
+tradutor_terminal.ignorar = []
+tradutor_terminal.ignorar_sensivel = True
+tradutor_terminal.caminho = None
+tradutor_terminal.reescrever = True
+tradutor_terminal.sep_pasta = '/'
+tradutor_terminal.regex = ''
+tradutor_terminal.encoding = 'utf-8'
+tradutor_terminal.max_thread = 1
+tradutor_terminal.qualidade_minima = 0.9
+tradutor_terminal.tradutor_atual = 'modelo'  # ou 'facebook'
+
+# Extração de texto do arquivo
+tradutor_terminal.retira_texto_de_arquivo()
+
+# Tradução das linhas salvas
+tradutor_terminal.traduzir_linhas_salvas()
+
+- Mantenha o ambiente virtualizado e as dependências atualizadas para garantir a compatibilidade com as bibliotecas e ferramentas utilizadas.
+- Faça testes abrangentes para verificar a robustez e eficácia do código em diferentes cenários e condições.
+- Ajuste as configurações conforme necessário para atender às especificações e requisitos do projeto.
+- Esteja ciente das limitações e restrições impostas pelas APIs e modelos de tradução utilizados.
+- Considere implementar mecanismos adicionais de segurança e validação para proteger contra possíveis vulnerabilidades e erros de segurança.
+- Documente adequadamente o código e forneça instruções claras para facilitar o uso e a manutenção futura.
+- Mantenha-se atualizado sobre as melhores práticas de desenvolvimento e as últimas atualizações nas bibliotecas e ferramentas utilizadas.
+
+Com estas observações em mente, o `TradutorTerminal` pode ser uma ferramenta poderosa para automatizar e simplificar o processo de tradução de texto em seus projetos. Certifique-se de adaptar o código conforme necessário e aproveitar ao máximo suas funcionalidades.
+
+Se você tiver alguma dúvida ou precisar de mais assistência, não hesite em perguntar!

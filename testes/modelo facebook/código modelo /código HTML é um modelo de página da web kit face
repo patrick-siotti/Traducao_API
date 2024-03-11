@@ -1,0 +1,53 @@
+Esse código HTML é um modelo de página da web que será exibido em um navegador. Ele é destinado a mostrar os parâmetros de resposta recebidos de uma solicitação de autenticação utilizando o serviço Account Kit do Facebook.
+
+Aqui está uma explicação do que cada parte do código faz:
+
+<!DOCTYPE html>: Declara o tipo de documento como HTML5, indicando ao navegador a versão do HTML utilizada.
+
+<html lang="en">: Define a raiz do documento HTML e especifica o idioma do conteúdo como inglês (en). Isso ajuda os navegadores e mecanismos de busca a entender o idioma do conteúdo.
+
+<head>: Contém metadados e informações sobre o documento, como o título da página, a codificação de caracteres e as tags de estilo e script.
+
+<meta charset="UTF-8">: Especifica a codificação de caracteres como UTF-8, que suporta uma ampla gama de caracteres em diferentes idiomas.
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">: Define o modo de compatibilidade do Internet Explorer para a versão mais recente disponível.
+
+<meta name="viewport" content="width=device-width, initial-scale=1">: Controla a escala e a largura do viewport em dispositivos móveis, garantindo uma visualização correta em diferentes tamanhos de tela.
+
+<title>Account Kit Test</title>: Define o título da página como "Account Kit Test", que será exibido na aba do navegador ou na barra de título da janela do navegador.
+
+<body>: Contém o conteúdo principal da página, incluindo texto, imagens, links e outros elementos visíveis.
+
+<header>: Contém o cabeçalho da página, incluindo o título principal <h1>Parâmetros de Resposta</h1>.
+
+<main>: Define o conteúdo principal da página, que inclui uma lista não ordenada (<ul>) para exibir os parâmetros de resposta.
+
+<ul> e <li>: Cria uma lista de itens não ordenados (<ul>) e itens de lista (<li>) para exibir os parâmetros de resposta. Cada parâmetro é mostrado com um rótulo em negrito e seu valor é inserido dinamicamente usando a sintaxe {{ variavel }}, indicando que será preenchido com dados dinâmicos do servidor.
+
+No geral, este código HTML é uma estrutura básica para exibir os parâmetros de resposta de uma solicitação de autenticação do Account Kit em uma página da web.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account Kit Test</title>
+</head>
+<body>
+    <header>
+        <h1>Parâmetros de Resposta</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li><strong>ID do Usuário:</strong> {{ user_id }}</li>
+            <li><strong>Número de Telefone:</strong> {{ phone_number }}</li>
+            <li><strong>Endereço de Email:</strong> {{ email_address }}</li>
+            <li><strong>Token de Acesso:</strong> {{ user_access_token }}</li>
+            <li><strong>Intervalo de Atualização:</strong> {{ refresh_interval }}</li>
+        </ul>
+    </main>
+</body>
+</html>
