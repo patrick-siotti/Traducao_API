@@ -87,3 +87,73 @@ LICENSE: Arquivo contendo a licença do projeto, especificando os termos de uso 
 .gitignore: Arquivo de configuração do Git para ignorar arquivos e diretórios desnecessários no controle de versão.
 
 Essa nova estrutura organiza o projeto de tradução de jogos, separando claramente as funcionalidades de tradução usando a linguagem do Facebook e a T5. Além disso, fornece exemplos de uso e uma documentação detalhada para facilitar o desenvolvimento e o uso do projeto.
+
+game_translation_project/
+│
+├── src/
+│   ├── main.ino                            # Arquivo principal do programa Arduino.
+│   ├── facebook_translation.h              # Declaração de classes ou funções relacionadas à tradução utilizando a API do Facebook.
+│   ├── facebook_translation.cpp            # Implementação das classes ou funções relacionadas à tradução utilizando a API do Facebook.
+│   ├── t5_translation.h                    # Declaração de classes ou funções relacionadas à tradução utilizando o modelo T5.
+│   ├── t5_translation.cpp                  # Implementação das classes ou funções relacionadas à tradução utilizando o modelo T5.
+│   ├── game_translation_util.h             # Declaração de funções utilitárias relacionadas à tradução de jogos.
+│   ├── game_translation_util.cpp           # Implementação de funções utilitárias relacionadas à tradução de jogos.
+│
+├── tests/
+│   ├── facebook_translation_tests.ino      # Testes para a tradução utilizando a API do Facebook.
+│   ├── t5_translation_tests.ino            # Testes para a tradução utilizando o modelo T5.
+│
+├── libraries/
+│   ├── facebook_api_library/               # Biblioteca externa utilizada para interagir com a API do Facebook.
+│   │   ├── facebook_api.h                  # Arquivo de cabeçalho da biblioteca.
+│   │   ├── facebook_api.cpp                # Arquivo de implementação da biblioteca.
+│   ├── t5_library/                         # Biblioteca externa utilizada para implementar o modelo T5.
+│   │   ├── t5.h                            # Arquivo de cabeçalho da biblioteca.
+│   │   ├── t5.cpp                          # Arquivo de implementação da biblioteca.
+│
+├── examples/
+│   ├── basic_usage.ino                     # Exemplo de uso básico do projeto.
+│   ├── advanced_usage.ino                  # Exemplo de uso avançado do projeto.
+│
+├── docs/
+│   ├── README.md                           # Descrição do projeto e instruções de uso.
+│   ├── user_manual.md                      # Manual do usuário com informações sobre como usar a tradução de jogos.
+│   ├── troubleshooting.md                  # Guia de solução de problemas comuns.
+│   ├── images/                             # Pasta com imagens utilizadas na documentação.
+│   │   ├── diagram1.png                    # Diagrama 1.
+│   │   ├── diagram2.png                    # Diagrama 2.
+│
+├── platformio.ini                          # Arquivo de configuração do PlatformIO.
+├── LICENSE                                 # Arquivo contendo a licença do projeto.
+├── .gitignore                              # Arquivo de configuração do Git para ignorar arquivos e diretórios desnecessários.
+
+
+organização do projeto game_translation_project de forma clara e fácil de entender:
+
+src/: Este diretório contém os arquivos-fonte do projeto, onde você escreve o código para realizar a tradução de jogos.
+
+main.ino: Este é o arquivo principal do programa Arduino, onde você escreve o código para controlar o dispositivo e gerenciar a tradução dos jogos.
+
+facebook_translation.h / facebook_translation.cpp: Esses arquivos contêm as definições e implementações das funções relacionadas à tradução usando a API do Facebook.
+
+t5_translation.h / t5_translation.cpp: Esses arquivos contêm as definições e implementações das funções relacionadas à tradução usando o modelo T5.
+
+game_translation_util.h / game_translation_util.cpp: Esses arquivos contêm as definições e implementações de funções utilitárias relacionadas à tradução de jogos.
+
+tests/: Este diretório contém os arquivos de teste para garantir o funcionamento correto das funcionalidades de tradução.
+
+facebook_translation_tests.ino: Este arquivo contém os testes para verificar se a tradução utilizando a API do Facebook está funcionando corretamente.
+
+t5_translation_tests.ino: Este arquivo contém os testes para verificar se a tradução utilizando o modelo T5 está funcionando corretamente.
+
+libraries/: Este diretório contém as bibliotecas externas utilizadas no projeto, como a biblioteca para interagir com a API do Facebook e a biblioteca para implementar o modelo T5.
+
+examples/: Este diretório contém exemplos de uso do projeto, incluindo exemplos de como realizar a tradução de jogos de forma básica e avançada.
+
+docs/: Este diretório contém a documentação do projeto, incluindo o README com descrição e instruções de uso, manual do usuário com informações sobre como usar a tradução de jogos, guia de solução de problemas e imagens utilizadas na documentação.
+
+platformio.ini: Este é o arquivo de configuração do PlatformIO, que especifica as configurações do ambiente de desenvolvimento.
+
+LICENSE: Este arquivo contém a licença do projeto, especificando os termos de uso e distribuição.
+
+.gitignore: Este arquivo contém as configurações do Git para ignorar arquivos e diretórios desnecessários durante o controle de versão.
