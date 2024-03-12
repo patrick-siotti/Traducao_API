@@ -273,4 +273,188 @@ Este exemplo mostra apenas uma utilização básica do modelo T5-Base para tradu
 
 Este arquivo Markdown fornece uma visão geral do código Python para tradução usando o modelo T5-Base, explica como o código funciona, discute opções de ajuste fino, fornece instruções de instalação e oferece considerações finais.
 
+# Tradução com T5-Base
+
+Este é um exemplo de como usar o modelo T5-Base para tradução de texto. O T5-Base é uma versão menor do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI.
+
+## Comparação entre o Modelo T5-Base e o Modelo Facebook
+
+Ao comparar o modelo T5-Base com o modelo Facebook em termos de métricas técnicas reais, obtemos o seguinte:
+
+| Métrica              | T5-Base                                      | Modelo Facebook                                              |
+|----------------------|----------------------------------------------|--------------------------------------------------------------|
+| Tempo                | Varia dependendo do hardware e configuração do modelo. Geralmente rápido o suficiente para uso em tempo real, mas pode ser mais lento para textos muito longos. | Geralmente rápido para suportar aplicativos em tempo real. |
+| Qualidade da Tradução| Geralmente oferece traduções de alta qualidade para uma variedade de idiomas e domínios. A qualidade pode variar dependendo da complexidade do texto e da adequação do modelo ao domínio específico. | Provavelmente oferece traduções de alta qualidade, sendo desenvolvido por uma grande empresa de tecnologia com acesso a grandes volumes de dados e recursos de computação. |
+| Complexidade         | Possui aproximadamente 220 milhões de parâmetros. Requer recursos significativos de computação para treinamento e inferência. Menos complexo do que modelos maiores, como o T5-Large. | A complexidade pode variar, dependendo do tamanho e da arquitetura do modelo. Sem informações específicas disponíveis. |
+
+
+
+## Visualizações Gráficas
+
+Aqui estão algumas visualizações gráficas dos dados de teste:
+
+### Tempo de Tradução
+![Tempo de Tradução](link_para_o_grafico_tempo.png)
+
+### Qualidade da Tradução
+![Qualidade da Tradução](link_para_o_grafico_qualidade.png)
+
+### Complexidade dos Modelos
+![Complexidade dos Modelos](link_para_o_grafico_complexidade.png)
+
+
+
+## Contribua com seus Dados de Teste!
+
+Você pode contribuir com seus próprios dados de teste e visualizações! Basta seguir estes passos:
+
+1. Crie uma nova ramificação no repositório GitHub.
+2. Execute seus próprios testes comparativos entre o modelo T5-Base e o modelo Facebook.
+3. Registre os resultados dos seus testes na tabela acima e crie visualizações gráficas para eles.
+4. Faça um pull request com suas contribuições.
+
+Agradecemos a sua participação neste projeto colaborativo!
+
+
+
+
+# Tradução com T5-Base
+
+Este é um exemplo de como usar o modelo T5-Base para tradução de texto. O T5-Base é uma versão menor do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI.
+
+## Funcionalidades
+
+- Insira os dados de teste diretamente na página web.
+- Veja gráficos atualizados em tempo real com base nos dados inseridos.
+- Contribua com seus próprios dados de teste para a comparação entre o modelo T5-Base e o modelo Facebook.
+
+## Como Executar
+
+1. Certifique-se de ter o Python instalado em sua máquina.
+2. Clone este repositório:
+
+```bash
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+
+Navegue até o diretório do projeto:
+
+cd nome-do-repositorio
+
+Instale as dependências:
+
+pip install flask plotly
+
+Execute a aplicação:
+
+python app.py
+
+Abra o navegador e acesse o seguinte endereço:
+
+http://127.0.0.1:5000/
+
+Insira os dados de teste na página web e veja os gráficos atualizados em tempo real!
+Contribuindo
+Você pode contribuir com seus próprios dados de teste para esta aplicação! Basta seguir estes passos:
+
+Crie uma nova ramificação no repositório.
+Execute seus próprios testes comparativos entre o modelo T5-Base e o modelo Facebook.
+Registre os resultados dos seus testes na tabela apresentada na página web.
+Faça um pull request com suas contribuições.
+Aviso
+Esta aplicação é apenas um exemplo simplificado e pode não refletir totalmente o desempenho real dos modelos T5-Base e Facebook. Os dados de teste fornecidos são fictícios e não devem ser considerados como resultados reais.
+
+Códigos
+1. Arquivo app.py
+
+from flask import Flask, render_template, request
+import plotly.graph_objs as go
+
+app = Flask(__name__)
+
+# Lista para armazenar os dados de teste
+test_data = []
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Obter os dados do formulário
+    model_name = request.form['model_name']
+    tempo = float(request.form['tempo'])
+    qualidade = float(request.form['qualidade'])
+    complexidade = float(request.form['complexidade'])
+
+    # Adicionar os dados à lista de test_data
+    test_data.append({'Modelo': model_name, 'Tempo': tempo, 'Qualidade': qualidade, 'Complexidade': complexidade})
+
+    return render_template('index.html', test_data=test_data)
+
+@app.route('/plot')
+def plot():
+    # Criar gráficos com base nos dados
+    tempo_data = [data['Tempo'] for data in test_data]
+    qualidade_data = [data['Qualidade'] for data in test_data]
+    complexidade_data = [data['Complexidade'] for data in test_data]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=tempo_data, mode='lines+markers', name='Tempo'))
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=qualidade_data, mode='lines+markers', name='Qualidade'))
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=complexidade_data, mode='lines+markers', name='Complexidade'))
+
+    graph = fig.to_html(full_html=False)
+
+    return render_template('plot.html', graph=graph)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+ 2. Arquivo index.html
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserir Dados de Teste</title>
+</head>
+<body>
+    <h1>Inserir Dados de Teste</h1>
+    <form action="/submit" method="post">
+        <label for="model_name">Nome do Modelo:</label>
+        <input type="text" id="model_name" name="model_name"><br><br>
+        <label for="tempo">Tempo:</label>
+        <input type="number" id="tempo" name="tempo" step="0.01"><br><br>
+        <label for="qualidade">Qualidade:</label>
+        <input type="number" id="qualidade" name="qualidade" step="0.01"><br><br>
+        <label for="complexidade">Complexidade:</label>
+        <input type="number" id="complexidade" name="complexidade" step="0.01"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+
+3. Arquivo plot.html
+
+<!-- plot.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráficos de Teste</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Gráficos de Teste</h1>
+    <div id="graph">
+        {{ graph|safe }}
+    </div>
+</body>
+</html>
+
+Este README.md inclui todos os três códigos necessários para executar a aplicação e as instruções para executá-la e contribuir com dados de teste.
+
+
+
+
 
