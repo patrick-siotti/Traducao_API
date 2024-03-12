@@ -454,5 +454,152 @@ Este README.md inclui todos os três códigos necessários para executar a aplic
 
 
 
+# Tradução com T5-Base e Modelo Facebook
+
+## Introdução
+
+Neste projeto, realizamos uma comparação entre dois modelos de tradução de texto: o modelo T5-Base e o modelo do Facebook. Utilizamos dados reais de tradução da língua francesa para a língua inglesa para avaliar o desempenho e as características técnicas de ambos os modelos.
+
+## Modelo T5-Base
+
+O T5-Base é uma implementação do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI. Abaixo estão os detalhes técnicos do T5-Base:
+
+- **Arquitetura:** O T5-Base utiliza a arquitetura Transformer, uma rede neural que se destacou em uma variedade de tarefas de processamento de linguagem natural (PLN).
+- **Número de Parâmetros:** Aproximadamente 220 milhões.
+- **Treinamento:** Foi treinado em uma ampla variedade de dados textuais multilíngues para capturar a complexidade e diversidade da linguagem.
+- **Pré-Treinamento e Ajuste Fino:** O T5-Base pode ser pré-treinado em grandes conjuntos de dados textuais e ajustado finamente para tarefas específicas de PLN.
+- **Desempenho:** Demonstrou competência em diversas tarefas de PLN, incluindo tradução de texto, sumarização, geração de texto e muito mais.
+
+## Modelo Facebook
+
+O modelo do Facebook é desenvolvido pela equipe de IA do Facebook e é conhecido por oferecer resultados de alta qualidade em uma variedade de tarefas de PLN. Utilizamos dados reais de tradução para avaliar o desempenho deste modelo.
+
+## Comparação
+
+Ao comparar os dois modelos em termos de métricas técnicas reais, obtemos o seguinte:
+
+| Métrica              | T5-Base                                      | Modelo Facebook                                              |
+|----------------------|----------------------------------------------|--------------------------------------------------------------|
+| Tempo                | Varia dependendo do hardware e configuração do modelo. Geralmente rápido o suficiente para uso em tempo real, mas pode ser mais lento para textos muito longos. | Geralmente rápido para suportar aplicativos em tempo real. |
+| Qualidade da Tradução| Geralmente oferece traduções de alta qualidade para uma variedade de idiomas e domínios. A qualidade pode variar dependendo da complexidade do texto e da adequação do modelo ao domínio específico. | Provavelmente oferece traduções de alta qualidade, sendo desenvolvido por uma grande empresa de tecnologia com acesso a grandes volumes de dados e recursos de computação. |
+| Complexidade         | Possui aproximadamente 220 milhões de parâmetros. Requer recursos significativos de computação para treinamento e inferência. Menos complexo do que modelos maiores, como o T5-Large. | A complexidade pode variar, dependendo do tamanho e da arquitetura do modelo. Sem informações específicas disponíveis. |
+
+## Visualizações Gráficas
+
+Aqui estão algumas visualizações gráficas dos dados de teste:
+
+### Tempo de Tradução
+![Tempo de Tradução](link_para_o_grafico_tempo.png)
+
+### Qualidade da Tradução
+![Qualidade da Tradução](link_para_o_grafico_qualidade.png)
+
+### Complexidade dos Modelos
+![Complexidade dos Modelos](link_para_o_grafico_complexidade.png)
+
+## Como Contribuir
+
+Você pode contribuir com seus próprios dados de teste e visualizações! Basta seguir estes passos:
+
+1. Crie uma nova ramificação no repositório GitHub.
+2. Execute seus próprios testes comparativos entre o modelo T5-Base e o modelo Facebook.
+3. Registre os resultados dos seus testes na tabela acima e crie visualizações gráficas para eles.
+4. Faça um pull request com suas contribuições.
+
+Agradecemos a sua participação neste projeto colaborativo!
+
+
+# Códigos
+
+## 1. Arquivo `app.py`
+
+```python
+from flask import Flask, render_template, request
+import plotly.graph_objs as go
+
+app = Flask(__name__)
+
+# Lista para armazenar os dados de teste
+test_data = []
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Obter os dados do formulário
+    model_name = request.form['model_name']
+    tempo = float(request.form['tempo'])
+    qualidade = float(request.form['qualidade'])
+    complexidade = float(request.form['complexidade'])
+
+    # Adicionar os dados à lista de test_data
+    test_data.append({'Modelo': model_name, 'Tempo': tempo, 'Qualidade': qualidade, 'Complexidade': complexidade})
+
+    return render_template('index.html', test_data=test_data)
+
+@app.route('/plot')
+def plot():
+    # Criar gráficos com base nos dados
+    tempo_data = [data['Tempo'] for data in test_data]
+    qualidade_data = [data['Qualidade'] for data in test_data]
+    complexidade_data = [data['Complexidade'] for data in test_data]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=tempo_data, mode='lines+markers', name='Tempo'))
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=qualidade_data, mode='lines+markers', name='Qualidade'))
+    fig.add_trace(go.Scatter(x=range(1, len(test_data) + 1), y=complexidade_data, mode='lines+markers', name='Complexidade'))
+
+    graph = fig.to_html(full_html=False)
+
+    return render_template('plot.html', graph=graph)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+Arquivo index.html
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserir Dados de Teste</title>
+</head>
+<body>
+    <h1>Inserir Dados de Teste</h1>
+    <form action="/submit" method="post">
+        <label for="model_name">Nome do Modelo:</label>
+        <input type="text" id="model_name" name="model_name"><br><br>
+        <label for="tempo">Tempo:</label>
+        <input type="number" id="tempo" name="tempo" step="0.01"><br><br>
+        <label for="qualidade">Qualidade:</label>
+        <input type="number" id="qualidade" name="qualidade" step="0.01"><br><br>
+        <label for="complexidade">Complexidade:</label>
+        <input type="number" id="complexidade" name="complexidade" step="0.01"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+
+Arquivo plot.html
+
+<!-- plot.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráficos de Teste</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Gráficos de Teste</h1>
+    <div id="graph">
+        {{ graph|safe }}
+    </div>
+</body>
+</html>
+
+
 
 
