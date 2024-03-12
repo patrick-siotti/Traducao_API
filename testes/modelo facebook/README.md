@@ -601,5 +601,211 @@ Arquivo plot.html
 </html>
 
 
+Arquivo index.html
+Este arquivo HTML será responsável por criar um formulário onde os usuários poderão inserir os dados de teste.
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserir Dados de Teste</title>
+</head>
+<body>
+    <h1>Inserir Dados de Teste</h1>
+    <form action="/submit" method="post">
+        <label for="model_name">Nome do Modelo:</label>
+        <input type="text" id="model_name" name="model_name"><br><br>
+        <label for="tempo">Tempo:</label>
+        <input type="number" id="tempo" name="tempo" step="0.01"><br><br>
+        <label for="qualidade">Qualidade:</label>
+        <input type="number" id="qualidade" name="qualidade" step="0.01"><br><br>
+        <label for="complexidade">Complexidade:</label>
+        <input type="number" id="complexidade" name="complexidade" step="0.01"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+
+
+
+Arquivo plot.html
+Este arquivo HTML será responsável por exibir os gráficos com base nos dados inseridos pelos usuários.
+
+<!-- plot.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráficos de Teste</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Gráficos de Teste</h1>
+    <div id="graph">
+        {{ graph|safe }}
+    </div>
+</body>
+</html>
+
+
+Estes arquivos HTML complementam o formulário e a exibição dos gráficos na aplicação web.
+
+## Instalação
+
+Para executar esta aplicação em sua máquina local, siga estas etapas:
+
+1. Certifique-se de ter o Python instalado em sua máquina.
+
+2. Clone este repositório:
+
+    ```bash
+    git clone https://github.com/seu-usuario/nome-do-repositorio.git
+    ```
+
+3. Navegue até o diretório do projeto:
+
+    ```bash
+    cd nome-do-repositorio
+    ```
+
+4. Instale as dependências:
+
+    ```bash
+    pip install flask plotly
+    ```
+
+5. Execute a aplicação:
+
+    ```bash
+    python app.py
+    ```
+
+6. Abra o navegador e acesse o seguinte endereço:
+
+    ```
+    http://127.0.0.1:5000/
+    ```
+
+Agora você pode inserir os dados de teste na página web e visualizar os gráficos atualizados em tempo real!
+
+
+Seção de Contribuição
+Nesta seção, podemos explicar como os usuários podem contribuir com seus próprios dados de teste para a aplicação.
+
+## Contribuição
+
+Você pode contribuir com seus próprios dados de teste para esta aplicação! Basta seguir estes passos:
+
+1. Crie uma nova ramificação no repositório.
+
+2. Execute seus próprios testes comparativos entre o modelo T5-Base e o modelo Facebook.
+
+3. Registre os resultados dos seus testes na tabela apresentada na página web.
+
+4. Faça um pull request com suas contribuições.
+
+Seção de Aviso
+Nesta seção, podemos incluir um aviso importante sobre as limitações e a natureza dos resultados fornecidos pela aplicação.
+
+## Aviso
+
+Esta aplicação é apenas um exemplo simplificado e pode não refletir totalmente o desempenho real dos modelos T5-Base e Facebook. Os dados de teste fornecidos são fictícios e não devem ser considerados como resultados reais.
+
+Seção de Funcionalidades
+Nesta seção, listaremos os principais recursos e funcionalidades oferecidos pela aplicação.
+
+## Funcionalidades
+
+- Insira os dados de teste diretamente na página web.
+- Veja gráficos atualizados em tempo real com base nos dados inseridos.
+- Contribua com seus próprios dados de teste para a comparação entre o modelo T5-Base e o modelo Facebook.
+
+# Comparação entre Modelos de Tradução de Texto
+
+Neste projeto, faremos uma comparação entre dois modelos de tradução de texto: o modelo T5-Base e um modelo de tradução do Facebook. Analisaremos diversas métricas técnicas para avaliar o desempenho e a eficácia de cada modelo.
+
+## Modelo T5-Base
+
+O modelo T5-Base é uma implementação do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI. Abaixo estão os detalhes técnicos do T5-Base:
+
+### Especificações Técnicas:
+
+- **Arquitetura:** Transformer.
+- **Número de Parâmetros:** Aproximadamente 220 milhões.
+- **Treinamento:** Realizado em uma ampla variedade de dados textuais multilíngues.
+- **Pré-Treinamento e Ajuste Fino:** Pode ser pré-treinado em grandes conjuntos de dados textuais e ajustado finamente para tarefas específicas de PLN.
+- **Desempenho:** Demonstrou competência em diversas tarefas de PLN, incluindo tradução de texto, sumarização, geração de texto e muito mais.
+
+### Melhorias e Recursos Futuros:
+
+- **Detecção de Linguagem:** Adicionar recursos de detecção automática de idioma.
+- **Controle de Qualidade:** Implementar técnicas de controle de qualidade para garantir traduções precisas e de alta qualidade.
+- **Suporte a Mais Idiomas:** Ampliar o suporte a uma variedade maior de idiomas.
+- **Integração com Outros Modelos:** Explorar a integração com outros modelos de PLN para oferecer opções adicionais aos usuários.
+
+### Licença:
+
+Este projeto é licenciado sob a MIT License.
+
+## Comparação entre o Modelo T5-Base e o Modelo do Facebook
+
+Ao comparar o modelo T5-Base com o modelo do Facebook em termos de métricas técnicas reais, obtemos o seguinte:
+
+| Métrica              | T5-Base                                      | Modelo Facebook                                              |
+|----------------------|----------------------------------------------|--------------------------------------------------------------|
+| Tempo de Tradução    | Geralmente rápido o suficiente para uso em tempo real, mas pode ser mais lento para textos muito longos. | Geralmente rápido para suportar aplicativos em tempo real. |
+| Qualidade da Tradução| Geralmente oferece traduções de alta qualidade para uma variedade de idiomas e domínios. A qualidade pode variar dependendo da complexidade do texto e da adequação do modelo ao domínio específico. | Provavelmente oferece traduções de alta qualidade, sendo desenvolvido por uma grande empresa de tecnologia com acesso a grandes volumes de dados e recursos de computação. |
+| Complexidade do Modelo| Menos complexo do que modelos maiores, como o T5-Large. | A complexidade pode variar, dependendo do tamanho e da arquitetura do modelo. Sem informações específicas disponíveis. |
+
+## Visualizações Gráficas
+
+Aqui estão algumas visualizações gráficas dos dados de teste:
+
+- [Tempo de Tradução](link_para_o_grafico_tempo.png)
+- [Qualidade da Tradução](link_para_o_grafico_qualidade.png)
+- [Complexidade dos Modelos](link_para_o_grafico_complexidade.png)
+
+## Como Executar a Aplicação
+
+Para executar a aplicação que permite inserir dados de teste e visualizar gráficos em tempo real, siga estas etapas:
+
+1. Clone o repositório:
+
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+
+
+2. Navegue até o diretório do projeto:
+
+cd nome-do-repositorio
+
+
+3. Instale as dependências:
+
+
+pip install flask plotly
+
+
+4. Execute a aplicação:
+
+python app.py
+
+
+5. Abra o navegador e acesse o seguinte endereço:
+
+http://127.0.0.1:5000/
+
+6. Insira os dados de teste na página web e veja os gráficos atualizados em tempo real!
+
+## Contribua com seus Dados de Teste!
+
+Você pode contribuir com seus próprios dados de teste e visualizações! Basta seguir estes passos:
+
+1. Crie uma nova ramificação no repositório GitHub.
+2. Execute seus próprios testes comparativos entre o modelo T5-Base e o modelo Facebook.
+3. Registre os resultados dos seus testes na tabela acima e crie visualizações gráficas para eles.
+4. Faça um pull request com suas contribuições.
+
+Agradecemos a sua participação neste projeto colaborativo!
+
+
 
 
