@@ -271,8 +271,6 @@ Considerações Finais
 Este exemplo mostra apenas uma utilização básica do modelo T5-Base para tradução de texto. Experimente com diferentes textos e idiomas para explorar mais as capacidades do modelo.
 
 
-Este arquivo Markdown fornece uma visão geral do código Python para tradução usando o modelo T5-Base, explica como o código funciona, discute opções de ajuste fino, fornece instruções de instalação e oferece considerações finais.
-
 # Tradução com T5-Base
 
 Este é um exemplo de como usar o modelo T5-Base para tradução de texto. O T5-Base é uma versão menor do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI.
