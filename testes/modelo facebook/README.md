@@ -179,6 +179,7 @@ target_language = "en"
 
 translated_text = translate_text(input_text, target_language)
 print("Texto Traduzido:", translated_text)
+```
 
 Detalhes Técnicos do T5-Base
 O modelo T5-Base é uma implementação do Text-To-Text Transfer Transformer (T5), desenvolvido pelo Google AI. Abaixo estão os detalhes técnicos do T5-Base:
@@ -255,6 +256,7 @@ translated_text = translator.translate(text_to_translate, target_language="pt")
 # Imprimindo os resultados
 print("Texto Original:", text_to_translate)
 print("Texto Traduzido:", translated_text)
+```
 
 Funcionamento
 Este código Python utiliza a biblioteca transformers da Hugging Face para carregar o modelo T5-Base pré-treinado e o tokenizer correspondente. Em seguida, define uma classe T5Translator que encapsula a lógica de tradução usando o modelo T5-Base. O método translate() desta classe recebe um texto de entrada e retorna a tradução para o idioma especificado (por padrão, português).
@@ -349,7 +351,7 @@ python app.py
 Abra o navegador e acesse o seguinte endereço:
 
 http://127.0.0.1:5000/
-
+```
 Insira os dados de teste na página web e veja os gráficos atualizados em tempo real!
 Contribuindo
 Você pode contribuir com seus próprios dados de teste para esta aplicação! Basta seguir estes passos:
@@ -364,6 +366,7 @@ Esta aplicação é apenas um exemplo simplificado e pode não refletir totalmen
 Códigos
 1. Arquivo app.py
 
+```python
 from flask import Flask, render_template, request
 import plotly.graph_objs as go
 
@@ -407,7 +410,7 @@ def plot():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
+```
 
  2. Arquivo index.html
 
@@ -645,7 +648,7 @@ Este arquivo HTML será responsável por exibir os gráficos com base nos dados 
     </div>
 </body>
 </html>
-
+```
 
 Estes arquivos HTML complementam o formulário e a exibição dos gráficos na aplicação web.
 
