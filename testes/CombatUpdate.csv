@@ -1,0 +1,84 @@
+Instalar as Dependências:
+
+Antes de começar, certifique-se de ter instalado a biblioteca transformers. Você pode instalar utilizando o pip:
+
+pip install transformers
+
+Criar a Classe TradutorTerminal:
+
+Inicialize a classe com o modelo de tradução m2m100_418M e o tokenizador correspondente.
+
+Implemente o método traduzir_texto para traduzir um único texto.
+
+Implemente o método traduzir_arquivo_csv para traduzir um arquivo CSV inteiro.
+
+Detectar Automaticamente o Idioma de Entrada:
+
+Utilize o método detector do tokenizador para detectar automaticamente o idioma de entrada de cada texto.
+
+Tratar Exceções Durante a Tradução:
+
+Adicione tratamento de exceções para lidar com erros durante a tradução e evitar que o código falhe.
+
+Medir o Tempo de Execução:
+
+Adicione medição de tempo para monitorar o tempo total de execução do processo de tradução.
+
+```python
+import csv
+import os
+import time
+from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+
+class TradutorTerminal:
+    def __init__(self):
+        self.modelo_translate = 'facebook/m2m100_418M'
+        self.tokenizador = M2M100Tokenizer.from_pretrained(self.modelo_translate)
+        self.modelo = M2M100ForConditionalGeneration.from_pretrained(self.modelo_translate)
+
+    def traduzir_texto(self, texto, src_lang='auto', tgt_lang='pt'):
+        try:
+            # Detecta automaticamente o idioma de entrada se src_lang='auto'
+            if src_lang == 'auto':
+                src_lang = self.tokenizador.detector(texto)[0]
+
+            # Tokeniza e traduz o texto
+            input_ids = self.tokenizador(texto, return_tensors="pt", src_lang=src_lang, tgt_lang=tgt_lang).input_ids
+            traducao = self.modelo.generate(input_ids=input_ids, forced_bos_token_id=self.tokenizador.lang_code_to_id[tgt_lang])
+            return self.tokenizador.batch_decode(traducao, skip_special_tokens=True)[0]
+        except Exception as e:
+            print(f'Erro ao traduzir texto: {e}')
+            return None
+
+    def traduzir_arquivo_csv(self, caminho_entrada, caminho_saida):
+        with open(caminho_entrada, 'r', encoding='utf-8') as arquivo_entrada, \
+             open(caminho_saida, 'w', encoding='utf-8', newline='') as arquivo_saida:
+            leitor_csv = csv.reader(arquivo_entrada, delimiter=';')
+            escritor_csv = csv.writer(arquivo_saida, delimiter=';')
+
+            for linha in leitor_csv:
+                linha_traduzida = []
+                for elemento in linha:
+                    # Traduz cada elemento da linha
+                    elemento_traduzido = self.traduzir_texto(elemento)
+                    if elemento_traduzido is not None:
+                        linha_traduzida.append(elemento_traduzido)
+                    else:
+                        linha_traduzida.append(elemento)  # Mantém o texto original em caso de erro
+
+                escritor_csv.writerow(linha_traduzida)
+
+# Configurações específicas para tradução do arquivo CombatUpdate.csv
+if __name__ == '__main__':
+    tradutor = TradutorTerminal()
+    caminho_entrada = 'CombatUpdate.csv'
+    caminho_saida = 'CombatUpdate_traduzido.csv'
+
+    print('Iniciando tradução...')
+    inicio = time.time()
+    tradutor.traduzir_arquivo_csv(caminho_entrada, caminho_saida)
+    fim = time.time()
+    print(f'Tradução concluída! Tempo total: {fim - inicio:.2f} segundos.')
+
+Neste código, implementamos a classe `TradutorTerminal`, que utiliza o modelo de tradução multilíngue `m2m100_418M` para traduzir textos em qualquer idioma para o português. Também adicionamos detecção automática de idioma, tratamento de exceções e medição de tempo de execução. Certifique-se de ajustar os caminhos dos arquivos de entrada e saída conforme necessário.
+
